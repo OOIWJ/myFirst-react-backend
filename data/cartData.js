@@ -3,11 +3,12 @@ const pool = require('../database');
 // Fetch cart contents for a user
 async function getCartContents(userId) {
   const [rows] = await pool.query(
-    'SELECT c.product_id, p.name AS productName, p.price, p.image, c.quantity FROM cart_items c JOIN products p ON c.product_id = p.id WHERE c.user_id = ?',
+    'SELECT c.id, c.product_id, p.image as imageUrl, p.name AS productName, CAST(price AS DOUBLE) AS price, c.quantity FROM cart_items c JOIN products p ON c.product_id = p.id WHERE c.user_id = ?',
     [userId]
   );
   return rows;
 }
+
 
 
 // Bulk update the cart contents
@@ -38,5 +39,5 @@ async function updateCart(userId, cartItems) {
 
 module.exports = {
   getCartContents,
-  updateCart, // New bulk update function
+  updateCart
 };
