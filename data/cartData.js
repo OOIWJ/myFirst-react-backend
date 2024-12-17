@@ -28,6 +28,7 @@ async function updateCart(userId, cartItems) {
       );
     }
 
+
     await connection.commit();
   } catch (error) {
     await connection.rollback();
@@ -35,6 +36,7 @@ async function updateCart(userId, cartItems) {
   } finally {
     connection.release();
   }
+  console.log(`CartData.updateCart: Updating cart for userId: ${userId}`, cartItems);
 }
 
 module.exports = {
