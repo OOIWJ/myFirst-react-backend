@@ -30,7 +30,7 @@ async function updateCart(userId, cartItems) {
   try {
 
     // Your logic to update the cart goes here
-    console.log(`CartService.updateCart: Updating cart for userId: ${userId}`, cartItems);
+    // console.log(`CartService.updateCart: Updating cart for userId: ${userId}`, cartItems);
     // Example API call or database logic
     // await someDatabaseCall(userId, cartItems);
   } catch (error) {

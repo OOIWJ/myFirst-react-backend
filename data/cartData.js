@@ -12,6 +12,36 @@ async function getCartContents(userId) {
 
 
 // Bulk update the cart contents
+// async function updateCart(userId, cartItems) {
+//   const connection = await pool.getConnection();
+//   try {
+//     await connection.beginTransaction();
+
+//     // Clear existing cart items for the user
+//     const [result] = await connection.query('DELETE FROM cart_items WHERE user_id = ?', [userId]);
+
+//     console.log(`${result.affectedRows} cart item(s) deleted for user ID: ${userId}`);
+
+//     // Insert each item in the new cart
+//     for (const item of cartItems) {
+//       await connection.query(
+//         'INSERT INTO cart_items (user_id, product_id, quantity) VALUES (?, ?, ?)',
+//         [userId, item.product_id, item.quantity]
+//       );
+//     }
+
+
+//     await connection.commit();
+//   } catch (error) {
+//     await connection.rollback();
+//     throw error;
+//   } finally {
+//     connection.release();
+//   }
+//   // console.log(`CartData.updateCart: Updating cart for userId: ${userId}`, cartItems);
+// }
+
+// Bulk update the cart contents
 async function updateCart(userId, cartItems) {
   const connection = await pool.getConnection();
   try {
@@ -28,7 +58,6 @@ async function updateCart(userId, cartItems) {
       );
     }
 
-
     await connection.commit();
   } catch (error) {
     await connection.rollback();
@@ -36,7 +65,6 @@ async function updateCart(userId, cartItems) {
   } finally {
     connection.release();
   }
-  console.log(`CartData.updateCart: Updating cart for userId: ${userId}`, cartItems);
 }
 
 module.exports = {

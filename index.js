@@ -27,6 +27,10 @@ app.get('/', (req, res) => {
   res.json({ message: "Welcome to our e-commerc API" });
 });
 
+//Checkout route
+const checkoutRoutes = require('./routes/checkout');
+app.use('/api/checkout', checkoutRoutes);
+
 // Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
